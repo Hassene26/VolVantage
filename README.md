@@ -21,7 +21,7 @@ Built for the **UHI8 Hookathon**.
 
 ## 💻 Showcase Dashboard
 
-We have included a high-fidelity frontend to visualize the RAD-IH system in action.
+I have included a high-fidelity frontend to visualize the RAD-IH system in action.
 
 ### Local Setup
 
