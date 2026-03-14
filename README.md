@@ -1,66 +1,61 @@
-## Foundry
+# 🛡️ VolVantage: RAD-IH Security Protocol
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**VolVantage** is a Risk-Adjusted Dynamic Incentive Hook (RAD-IH) for Uniswap v4, specifically designed for the **Unichain** ecosystem. It protects Liquidity Providers (LPs) from toxic volatility and "stress" events by dynamically adjusting fees and automating secondary rewards.
 
-Foundry consists of:
+Built for the **UHI8 Hookathon**.
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## 🚀 Live on Unichain Sepolia
 
-## Documentation
+| Component | Address |
+| :--- | :--- |
+| **VolVantageHook** | [`0x14BED34ccE878e72Bd4d3b40c0E803597BF2E680`](https://sepolia.uniscan.xyz/address/0x14BED34ccE878e72Bd4d3b40c0E803597BF2E680) |
+| **StressRewardToken (vSTRESS)** | [`0xA1D1B5ee47886f745707213C65073ff0BC61d7C7`](https://sepolia.uniscan.xyz/address/0xA1D1B5ee47886f745707213C65073ff0BC61d7C7) |
+| **WETH/USDC Pool** | Active with RAD-IH Monitoring |
 
-https://book.getfoundry.sh/
+## ✨ Features
 
-## Usage
+- **Composite Risk Engine:** Monitors pool "stress" using a weighted average of Volatility (TWAP deviation), Liquidity Depth, and Volume Imbalance.
+- **Dynamic Fee Adjustment:** Escalates swap fees during high-risk periods to compensate LPs for toxic order flow.
+- **Stress-Based Rewards:** Automatically mints `vSTRESS` tokens to LPs who provide "bravery liquidity" during high-stress windows.
+- **Volatility Tax:** Applies a temporary exit tax during extreme volatility to discourage LP flight and preserve secondary market stability.
 
-### Build
+## 💻 Showcase Dashboard
 
-```shell
-$ forge build
+We have included a high-fidelity frontend to visualize the RAD-IH system in action.
+
+### Local Setup
+
+1.  **Navigate to the frontend directory:**
+    ```bash
+    cd frontend
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+4.  **Visit `http://localhost:5173`** to see the Risk Intelligence gauge and Fee Tracker.
+
+## 🏗️ Development & Testing
+
+### Prequisites
+- [Foundry](https://book.getfoundry.sh/getting-started/installation)
+- [Node.js & NPM](https://nodejs.org/)
+
+### Smart Contracts
+```bash
+# Build contracts
+forge build
+
+# Run security tests
+forge test
+
+# Deploy Hook (Custom Salt Required)
+forge script script/00_DeployHook.s.sol:DeployHook --rpc-url $RPC_URL --broadcast
 ```
 
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+## 📜 License
+MIT
