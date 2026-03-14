@@ -87,12 +87,12 @@ contract CreatePoolAndAddLiquidity is Script {
             permit2.approve(token0, address(posm), maxAmount160, type(uint48).max);
             permit2.approve(token1, address(posm), maxAmount160, type(uint48).max);
             
-            // Set safer amounts: 2 USDC (6 dec) or 0.001 WETH (18 dec)
+            // Set bare minimum amounts: 1 USDC (6 dec) or 0.0001 WETH (18 dec)
             uint8 dec0 = IERC20Metadata(token0).decimals();
             uint8 dec1 = IERC20Metadata(token1).decimals();
             
-            amount0Used = (dec0 == 6) ? 10e6 : 1e15; 
-            amount1Used = (dec1 == 6) ? 10e6 : 1e15;
+            amount0Used = (dec0 == 6) ? 1e6 : 1e14; 
+            amount1Used = (dec1 == 6) ? 1e6 : 1e14;
 
             console.log("Permit2 approvals completed");
         }
