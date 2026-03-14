@@ -2,6 +2,7 @@
 pragma solidity ^0.8.26;
 
 import {BaseHook} from "@openzeppelin/uniswap-hooks/src/base/BaseHook.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 import {Hooks} from "@uniswap/v4-core/src/libraries/Hooks.sol";
 import {
@@ -36,14 +37,14 @@ import {StressRewardToken} from "./StressRewardToken.sol";
 ///         2. Mints reward tokens to LPs who add liquidity during high stress
 ///         3. Applies a volatility tax to discourage LP flight during stress
 ///         Built for Unichain with Flashblock-aware sub-second risk updates.
-contract VolVantageHook is BaseHook {
+contract VolVantageHook is BaseHook, Ownable {
     using PoolIdLibrary for PoolKey;
     using StateLibrary for IPoolManager;
     using CurrencyLibrary for Currency;
 
     // ======================== ERRORS ========================
 
-    error OnlyOwner();
+    // error OnlyOwner(); (Inherited from Ownable)
 
     // ======================== EVENTS ========================
 
@@ -89,7 +90,7 @@ contract VolVantageHook is BaseHook {
 
     // ======================== STATE ========================
 
-    address public owner;
+    // address public owner; (Inherited from Ownable)
 
     /// @notice Risk Score weights (must sum to 100)
     uint256 public w1 = 50; // Volatility weight
@@ -109,18 +110,15 @@ contract VolVantageHook is BaseHook {
 
     constructor(
         IPoolManager _poolManager,
-        StressRewardToken _rewardToken
-    ) BaseHook(_poolManager) {
-        owner = msg.sender;
+        StressRewardToken _rewardToken,
+        address _owner
+    ) BaseHook(_poolManager) Ownable(_owner) {
         rewardToken = _rewardToken;
     }
 
     // ======================== MODIFIERS ========================
 
-    modifier onlyOwner() {
-        if (msg.sender != owner) revert OnlyOwner();
-        _;
-    }
+    // modifier onlyOwner() { ... } (Inherited from Ownable)
 
     // ======================== HOOK PERMISSIONS ========================
 
