@@ -40,9 +40,7 @@ function App() {
     <div className="app-container">
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ background: 'var(--accent-purple)', padding: '10px', borderRadius: '12px' }}>
-            <Shield size={32} color="white" />
-          </div>
+          <img src="/logo2-nobg.png" alt="VolVantage Logo" style={{ height: '52px', width: 'auto' }} />
           <div>
             <h1 className="neon-text" style={{ fontSize: '2rem', margin: 0 }}>VolVantage</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>RAD-IH Security Protocol</p>
