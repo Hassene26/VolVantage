@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAccount, useConnect, useDisconnect, useReadContract } from 'wagmi';
 import { injected } from 'wagmi/connectors';
-import { Activity, Shield, Zap, TrendingUp, Wallet, Github } from 'lucide-react';
+import { Activity, Zap, TrendingUp, Wallet, Github } from 'lucide-react';
 import { formatUnits } from 'viem';
 
 // Contract Addresses
